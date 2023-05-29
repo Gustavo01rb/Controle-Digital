@@ -30,70 +30,67 @@ def open_loop(T):
     return (2 * (1 - e**(-2*T)) ) / (z - e**(-2*T))
 
 # Definição dos valores de T
-T_values = [0.1, 0.366, 0.524, 0.733, 0.98]
+T_values = [0.1, 0.246,  0.366, 0.442,0.5]
 
 # Definição dos vetores para armazenar as respostas de cada valor de T
 closed_loop_responses = []
 open_loop_responses = []
 
 for T in T_values:
-    time_range = np.arange(0, 100, 1) 
+    time_range = np.arange(0, 50, 1) 
     input_signal = Functions.step(time_range)
 
     y_closed, t_closed, _ = Functions.response(closed_loop(T), input_signal, time_range)
     
-    closed_loop_responses.append({
-        'y': y_closed,
-        't': t_closed,
-        'T_value': T
-    })
+    closed_loop_responses.append(        
+        Graphs.PlotObject(
+            data=y_closed,
+            range=t_closed,
+            title= f'T = {T}',
+            label= f'T = {T}',
+            discrete = False,
+        ))
 
     y_open, t_open, _ = Functions.response(open_loop(T), input_signal, time_range)
     
-    open_loop_responses.append({
-        'y': y_open,
-        't': t_open,
-        'T_value': T
-    })
+
+    open_loop_responses.append(
+        Graphs.PlotObject(
+            data=y_open,
+            range=t_open,
+            title= f'T = {T}',
+            label= f'T = {T}',
+            discrete = False ,
+        )
+    )
 
 # Plotagem dos resultados
-closed_loop_plots = []
-open_loop_plots = []
-
-for response in closed_loop_responses:
-    closed_loop_plots.append(
-        {
-            'data': response['y'],
-            'range': response['t'],
-            'discret': False,
-            'title': 'T = ' + str(response['T_value']),
-            'label': 'Step'
-        }
-    )
-for response in open_loop_responses:
-    open_loop_plots.append(
-        {
-            'data': response['y'],
-            'range': response['t'],
-            'discret': False,
-            'title': 'T = ' + str(response['T_value']),
-            'label': 'Step'
-        }
-    )
 
 Graphs.plot(
-    multiline=True,
-    grid=True,
-    title='Closed-loop System',
-    data=closed_loop_plots,
-    save_path="images/ex05/malha_fechada.png",
-    show=False
+    multiline=False,
+    data=open_loop_responses,
+    title="Malha aberta",
+    show=False,
+    save_path="images/ex05/open_group.png"
 )
 Graphs.plot(
     multiline=True,
-    grid=True,
-    title='Open-loop System',
-    data=open_loop_plots,
-    save_path="images/ex05/malha_aberta.png",
-    show=False
+    data=open_loop_responses,
+    title="Malha aberta",
+    show=False,
+    save_path="images/ex05/open_single.png",
+)
+Graphs.plot(
+    multiline=False,
+    data=closed_loop_responses,
+    title="Malha fechada",
+    show=False,
+    save_path="images/ex05/close_group.png"
+)
+Graphs.plot(
+    multiline=True,
+    data=closed_loop_responses,
+    title="Malha fechada",
+    show=False,
+    save_path="images/ex05/close_single.png",
 )
