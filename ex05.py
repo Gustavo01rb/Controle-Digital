@@ -85,11 +85,15 @@ Graphs.plot(
     multiline=True,
     grid=True,
     title='Closed-loop System',
-    data=closed_loop_plots
+    data=closed_loop_plots,
+    save_path="images/ex05/malha_fechada.png",
+    show=False
 )
 Graphs.plot(
     multiline=True,
     grid=True,
     title='Open-loop System',
-    data=open_loop_plots
+    data=open_loop_plots,
+    save_path="images/ex05/malha_aberta.png",
+    show=False
 )
