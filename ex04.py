@@ -71,26 +71,26 @@ Graphs.plot(
     data=open_loop_responses,
     title="Malha aberta",
     show=False,
-    save_path="images/ex05/open_group.png"
+    save_path="images/ex04/open_group.png"
 )
 Graphs.plot(
     multiline=True,
     data=open_loop_responses,
     title="Malha aberta",
     show=False,
-    save_path="images/ex05/open_single.png",
+    save_path="images/ex04/open_single.png",
 )
 Graphs.plot(
     multiline=False,
     data=closed_loop_responses,
     title="Malha fechada",
     show=False,
-    save_path="images/ex05/close_group.png"
+    save_path="images/ex04/close_group.png"
 )
 Graphs.plot(
     multiline=True,
     data=closed_loop_responses,
     title="Malha fechada",
     show=False,
-    save_path="images/ex05/close_single.png",
+    save_path="images/ex04/close_single.png",
 )

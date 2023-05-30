@@ -172,6 +172,7 @@ def plot_multiline(data, overlapping, title):
             plot_discrete(it, axs[index])
             if overlapping:
                 plot_discrete(it, axs[last])
+        axs[index].legend()
 
         if index == last - 1 and overlapping:
             axs[last].legend()
@@ -180,7 +181,7 @@ def plot_multiline(data, overlapping, title):
             axs[index].set_title(it.title, loc='left', fontsize=16, fontweight=200)
 
 
-def pzplot(p, z, save_path=None):
+def pzplot(p, z, save_path=None, show = False):
     """
     Função para plotar o gráfico de polos e zeros.
 
@@ -192,6 +193,7 @@ def pzplot(p, z, save_path=None):
     Returns:
         None
     """
+    plt.clf()
     _, ax = plt.subplots()
 
     # Plota os polos e zeros
@@ -208,6 +210,5 @@ def pzplot(p, z, save_path=None):
     plt.title('Polos e Zeros')
     plt.grid(True)
      
-    if save_path is not None:
-        plt.savefig(save_path)
-    plt.show()
+    if save_path is not None: plt.savefig(save_path)
+    if show: plt.show()

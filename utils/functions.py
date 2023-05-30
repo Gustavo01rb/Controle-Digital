@@ -65,3 +65,15 @@ def response(transfer_function, function, linspace):
         np.array: Resposta do sistema ao sinal de entrada.
     """
     return ct.lsim(transfer_function, function, linspace)
+
+def polos_and_zeros(transfer_function):
+    """
+    Retorna os polos e zeros de uma função de transferência.
+
+    Args:
+        transfer_function (TransferFunction): Função de transferência do sistema.
+
+    Returns:
+        None
+    """
+    return ct.pzmap(transfer_function, Plot=False)
