@@ -8,6 +8,12 @@ def z():
     """
     return ct.TransferFunction.z
 
+def s():
+    """
+    Retorna a função de transferência em S.
+    """
+    return ct.TransferFunction.s
+
 def step(linspace, n=0) -> np.array:
     """
     Gera um sinal degrau unitário.
@@ -77,3 +83,6 @@ def polos_and_zeros(transfer_function):
         None
     """
     return ct.pzmap(transfer_function, Plot=False)
+
+def stoz(transfer_function, T):
+    return ct.c2d(transfer_function, T, method='zoh')

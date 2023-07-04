@@ -67,12 +67,13 @@ def plot(data,
     if multiline:
         plot_multiline(data, overlapping, title)
     else: 
-        plt.title(title if title is not None else "", fontsize=22, fontweight="bold")
         if isinstance(data, list):
             for it in data:
                 plot_single(it)
         else:
             plot_single(data)
+        plt.title(title if title is not None else "", fontsize=22, fontweight="bold")
+        
         
     plt.legend(prop={'size': font_size_legend})    
     if x_label is not None:
